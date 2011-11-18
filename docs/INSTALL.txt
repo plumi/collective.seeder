@@ -1,0 +1,32 @@
+collective.seeder Installation
+------------------------------
+
+* Add ``collective.seeder`` to the list of eggs to install, e.g.:
+
+    [buildout]
+    ...
+    eggs =
+        ...
+        collective.seeder
+       
+* Tell the plone.recipe.zope2instance recipe to install a ZCML slug:
+
+    [instance]
+    recipe = plone.recipe.zope2instance
+    ...
+    zcml =
+        collective.seeder
+      
+* Re-run buildout, e.g. with:
+
+    $ ./bin/buildout
+        
+You can skip the ZCML slug if you are going to explicitly include the package
+from another package's configure.zcml file.
+
+If you want to automatically start seeding the created torrents, you can use a command line torrent client like rtorrent or deluged and configure it to watch your torrents folder for all changes.
+
+You can specify the torrent trackers, object fields that you would like to seed and the torrents directory in Plone Control Panel-> Seeder Settings.
+
+A symlink of the uploaded file and a torrent file will be stored in the torrents directory. 
+As some torrent clients (e.g. deluged) delete the torrent files once they add it to their queue, you must also specify a "safe" torrent directory that the torrent files will get copied to as a failsafe. Both the torrents and the "safe" torrents direcotiries must by ABSOLUTE paths with write access from the zope effective user.

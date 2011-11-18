@@ -1,0 +1,33 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.seeder">
+
+  <five:registerPackage package="." initialize=".initialize" />
+  <include package="plone.app.registry" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.seeder"
+      directory="profiles/default"
+      description="Installs the collective.seeder package"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <browser:page
+      name="seeder-controlpanel"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      permission="cmf.ManagePortal"
+      class=".controlpanel.SeederControlPanelView"
+      />
+
+  <subscriber handler=".subscribers.addFile" />
+  <subscriber 
+      for="*
+           zope.app.container.interfaces.IObjectRemovedEvent"
+      handler=".subscribers.deleteTorrent" /> 
+  
+</configure>
