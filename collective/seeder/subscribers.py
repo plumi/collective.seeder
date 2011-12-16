@@ -21,7 +21,7 @@ import time
 import bencode
 from hashlib import sha1 as sha
 
-log = logging.getLogger('collective.transcode')
+log = logging.getLogger('collective.seeder')
 
 noncharacter_translate = {}
 for i in xrange(0xD800, 0xE000):
