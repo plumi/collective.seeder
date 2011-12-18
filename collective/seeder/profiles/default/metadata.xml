@@ -1,6 +1,6 @@
 <metadata>
   <description>Torrent seeding support for Plone</description>
-  <version>0.1</version>
+  <version>1.1</version>
   <dependencies>
     <dependency>profile-plone.app.registry:default</dependency>
   </dependencies>
